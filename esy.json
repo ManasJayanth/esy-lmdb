@@ -1,0 +1,27 @@
+{
+  "name": "esy-lmdb",
+  "version": "0.9.31000",
+  "description": "lmdb packaged for esy",
+  "source": "https://git.openldap.org/openldap/openldap/-/archive/LMDB_0.9.31/openldap-LMDB_0.9.31.tar.bz2#sha256:2132b8261d241876ce5fe10a243b2f7e0127eecaaff30039573eadc09e3acee6",
+  "override": {
+    "buildEnv": {
+      "PREFIX": "$cur__install",
+      "CC_PREFIX": "#{os == 'windows' ? 'x86_64-w64-mingw32-': '' }"
+    },
+    "build": [
+      "make -C libraries/liblmdb SOEXT=#{os == 'darwin' ? '.dylib': ''}"
+    ],
+    "install": [
+      "sh ./gen-pc.sh",
+      "make -C libraries/liblmdb install SOEXT=.dylib prefix=#{self.install}"
+    ],
+    "buildsInSource": true,
+    "exportedEnv": {
+      "PKG_CONFIG_PATH": {
+        "val": "#{self.lib / 'pkgconfig'}",
+        "scope": "global"
+      }
+    },
+    "dependencies": {}
+  }
+}
