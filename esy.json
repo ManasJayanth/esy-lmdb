@@ -12,7 +12,8 @@
       "make -C libraries/liblmdb CC=$CC AR=$AR SOEXT=#{os == 'darwin' ? '.dylib': ''}"
     ],
     "install": [
-      "sh ./gen-pc.sh",
+      "bash -c 'mkdir -p #{self.lib}/pkgconfig'",
+      "bash ./gen-pc.sh",
       "make -C libraries/liblmdb install CC=$CC AR=$AR SOEXT=.dylib prefix=#{self.install}"
     ],
     "buildsInSource": true,
