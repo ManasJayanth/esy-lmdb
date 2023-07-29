@@ -1,6 +1,4 @@
-PKGCONFIG_DIR="$cur__lib/pkgconfig"
-mkdir -p $PKGCONFIG_DIR
-cat > $PKGCONFIG_DIR/lmdb.pc <<EOF
+cat > "$cur__lib/pkgconfig/lmdb.pc" <<EOF
 prefix=$cur__install
 exec_prefix=$cur__install
 libdir=$cur__lib
